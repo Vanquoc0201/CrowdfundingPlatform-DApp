@@ -6,8 +6,8 @@ import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import {
+  hardhat,
   sepolia, 
-
 } from 'wagmi/chains';
 
 import { ThemeProvider } from "@/components/theme/theme-provider"; 
@@ -21,7 +21,7 @@ if (!walletConnectProjectId) {
 
 const appChains = [
   sepolia,
-
+  hardhat
 ] as const; 
 
 const config = getDefaultConfig({

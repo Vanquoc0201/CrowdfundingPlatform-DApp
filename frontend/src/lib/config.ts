@@ -1,5 +1,6 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import {
+  hardhat,
   sepolia, 
 
 } from 'wagmi/chains';
@@ -14,6 +15,7 @@ if (!walletConnectProjectId) {
 }
 export const chains = [
   sepolia, 
+  hardhat
 ] as const;
 export const config = getDefaultConfig({
   appName: 'Crowdfunding DApp', 

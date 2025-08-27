@@ -3,25 +3,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { formatEther } from "viem"; 
-import { Timer, Goal } from "lucide-react"; 
-
-interface CampaignData {
-  id: number;
-  owner: `0x${string}`;
-  name: string;
-  description: string;
-  imageUrl: string;
-  goal: bigint;
-  amountRaised: bigint;
-  deadline: bigint;
-  status: 'Ongoing' | 'Successful' | 'Failed';
-}
+import { formatEther } from "viem";
+import { Timer, Goal } from "lucide-react";
+import { CampaignData } from "@/types/campaign"; 
 
 interface CampaignCardProps {
   campaign: CampaignData;
 }
-
 
 const formatTimeLeft = (deadline: bigint): string => {
   const timeLeftSeconds = Number(deadline) - Math.floor(Date.now() / 1000);
@@ -37,18 +25,18 @@ const formatTimeLeft = (deadline: bigint): string => {
 };
 
 export function CampaignCard({ campaign }: CampaignCardProps) {
-  const progress = Number((campaign.amountRaised * BigInt(100)) / campaign.goal);
+  const progress = Number((campaign.totalRaised * BigInt(100)) / campaign.goal);
   const formattedGoal = formatEther(campaign.goal);
-  const formattedAmountRaised = formatEther(campaign.amountRaised);
+  const formattedAmountRaised = formatEther(campaign.totalRaised); 
   const timeLeft = formatTimeLeft(campaign.deadline);
 
   let statusVariant: "default" | "secondary" | "destructive" | "outline" | null = null;
-  switch (campaign.status) {
+  switch (campaign.status) { 
     case 'Ongoing':
       statusVariant = "default";
       break;
     case 'Successful':
-      statusVariant = "secondary"; // Có thể dùng "success" nếu bạn tạo variant đó
+      statusVariant = "secondary";
       break;
     case 'Failed':
       statusVariant = "destructive";
@@ -62,7 +50,7 @@ export function CampaignCard({ campaign }: CampaignCardProps) {
           {campaign.imageUrl ? (
             <img
               src={campaign.imageUrl}
-              alt={campaign.name}
+              alt={campaign.title} 
               className="object-cover w-full h-full"
             />
           ) : (
@@ -71,7 +59,7 @@ export function CampaignCard({ campaign }: CampaignCardProps) {
             </div>
           )}
         </div>
-        <CardTitle className="text-lg line-clamp-1">{campaign.name}</CardTitle>
+        <CardTitle className="text-lg line-clamp-1">{campaign.title}</CardTitle> 
         <CardDescription className="line-clamp-2">{campaign.description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -92,7 +80,7 @@ export function CampaignCard({ campaign }: CampaignCardProps) {
       </CardContent>
       <CardFooter>
         <Button asChild className="w-full">
-          <Link href={`/campaign/${campaign.id}`}>View Details</Link>
+          <Link href={`/campaign/${campaign.id}`}>View Details</Link> 
         </Button>
       </CardFooter>
     </Card>
