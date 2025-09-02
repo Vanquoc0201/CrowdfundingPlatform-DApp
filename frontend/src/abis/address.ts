@@ -1,6 +1,6 @@
 export const CONTRACT_ADDRESSES = {
   localhost: {
-    CampaignFactory: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    CampaignFactory: "0xB581C9264f59BF0289fA76D61B2D0746dCE3C30D",
   },
   sepolia: {
     CampaignFactory: "0x....", 

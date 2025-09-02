@@ -12,17 +12,21 @@ export interface CampaignData {
   totalRaised: bigint;  
   contributorCount: bigint;
   requestCount: bigint;
+  minimumContribution: bigint;
   description: string;  
   imageUrl: string;     
   status: CampaignStatus; 
 }
 
 export interface RequestData {
-  id: number;           
+  id: number;
+  description: string;
   amount: bigint;
   recipient: Address;
-  approvalCount: bigint; 
+  approvalCount: bigint;
   complete: boolean;
+  hasApproved: boolean; 
+  percentageApprovals: number; 
 }
 
 export function getCampaignStatus(
